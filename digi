@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tandoor &amp; Co. — Real Indian Food, Made to Order</title>
+<meta name="description" content="Freshly prepared, authentic Indian dishes with fast service. Order on WhatsApp and get 10% off.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FBF6EA;
+    --cream-deep:#F3E9D4;
+    --ink:#241C17;
+    --ink-soft:#5B5148;
+    --chili:#A2273B;
+    --chili-deep:#7C1C2C;
+    --turmeric:#DFA323;
+    --leaf:#4B6350;
+    --card:#FFFFFF;
+    --line: rgba(36,28,23,0.14);
+    --radius: 4px;
+    --maxw: 1140px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Work Sans', sans-serif;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;}
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    margin:0 0 .5em;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0 0 1em;color:var(--ink-soft);}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px;}
+  .eyebrow{
+    font-family:'Work Sans',sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.18em;
+    font-size:.72rem;
+    font-weight:600;
+    color:var(--chili);
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    margin-bottom:1em;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px;height:1px;
+    background:var(--chili);
+    display:inline-block;
+  }
+  button, .btn{
+    font-family:'Work Sans',sans-serif;
+    font-weight:600;
+    font-size:.95rem;
+    cursor:pointer;
+    border:none;
+    border-radius:var(--radius);
+    padding:.95em 1.7em;
+    display:inline-flex;
+    align-items:center;
+    gap:.6em;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+  }
+  .btn:focus-visible, a:focus-visible, button:focus-visible{
+    outline:2px solid var(--chili);
+    outline-offset:3px;
+  }
+  .btn-primary{
+    background:var(--chili);
+    color:var(--cream);
+    box-shadow:0 2px 0 var(--chili-deep);
+  }
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 4px 0 var(--chili-deep);}
+  .btn-ghost{
+    background:transparent;
+    color:var(--ink);
+    border:1.5px solid var(--line);
+  }
+  .btn-ghost:hover{border-color:var(--ink);}
+
+  /* ---------- NAV ---------- */
+  header.site-nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(251,246,234,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:16px 24px;max-width:var(--maxw);margin:0 auto;
+  }
+  .logo{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:1.25rem;
+    letter-spacing:-.01em;
+  }
+  .logo span{color:var(--chili);}
+  nav.links{display:flex;gap:2rem;font-size:.92rem;font-weight:500;}
+  nav.links a{text-decoration:none;position:relative;}
+  nav.links a::after{
+    content:"";position:absolute;left:0;bottom:-4px;width:0;height:1.5px;
+    background:var(--chili);transition:width .2s ease;
+  }
+  nav.links a:hover::after{width:100%;}
+  .nav-cta{display:flex;align-items:center;gap:1.2rem;}
+  .nav-links-mobile-toggle{display:none;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:96px 0 110px;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;inset:0;
+    background-image:radial-gradient(var(--line) 1.2px, transparent 1.2px);
+    background-size:16px 16px;
+    opacity:.55;
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    display:grid;
+    grid-template-columns:1.1fr .8fr;
+    gap:56px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5vw, 4.1rem);
+    line-height:1.03;
+  }
+  .hero h1 em{
+    font-style:italic;
+    color:var(--chili);
+    font-weight:500;
+  }
+  .hero p.lead{
+    font-size:1.08rem;
+    max-width:46ch;
+    margin-bottom:2em;
+  }
+  .hero-actions{display:flex;gap:1rem;flex-wrap:wrap;align-items:center;}
+
+  .stamp{
+    width:128px;height:128px;
+    border-radius:50%;
+    border:2px dashed var(--chili);
+    display:flex;align-items:center;justify-content:center;
+    text-align:center;
+    transform:rotate(-9deg);
+    position:absolute;
+    right:24px;top:-18px;
+    background:var(--cream);
+  }
+  .stamp .stamp-inner{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    color:var(--chili);
+    line-height:1.1;
+  }
+  .stamp .stamp-inner .big{font-size:1.7rem;display:block;}
+  .stamp .stamp-inner .small{
+    font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;
+    color:var(--ink-soft);font-family:'Work Sans',sans-serif;font-weight:700;
+  }
+
+  .thali{
+    position:relative;
+    width:100%;
+    aspect-ratio:1/1;
+    max-width:380px;
+    margin-inline:auto;
+    border-radius:50%;
+    background:
+      conic-gradient(
+        var(--chili) 0turn 0.16turn,
+        var(--turmeric) 0.16turn 0.34turn,
+        var(--leaf) 0.34turn 0.5turn,
+        #C9713A 0.5turn 0.66turn,
+        var(--chili-deep) 0.66turn 0.82turn,
+        var(--turmeric) 0.82turn 1turn
+      );
+    box-shadow:0 24px 60px -20px rgba(36,28,23,.45), inset 0 0 0 10px var(--cream), inset 0 0 0 12px var(--line);
+  }
+  .thali::after{
+    content:"";
+    position:absolute;inset:30%;
+    border-radius:50%;
+    background:var(--cream);
+    box-shadow:inset 0 2px 6px rgba(0,0,0,.12);
+    display:flex;
+  }
+  .thali-label{
+    position:absolute;inset:30%;
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Fraunces',serif;font-style:italic;font-weight:500;
+    font-size:.95rem;color:var(--ink);
+    text-align:center;z-index:2;
+  }
+
+  /* ---------- SECTION SHARED ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px;margin-bottom:56px;}
+  .section-head.center{margin-inline:auto;text-align:center;}
+  .section-head h2{font-size:clamp(1.9rem,3vw,2.6rem);}
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid;
+    grid-template-columns:.85fr 1.15fr;
+    gap:64px;
+    align-items:center;
+  }
+  .about-copy p{font-size:1.02rem;}
+  .about-copy .accent-line{
+    width:48px;height:3px;background:var(--turmeric);margin-bottom:1.5em;
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features{
+    background:var(--ink);
+    color:var(--cream);
+  }
+  .features .section-head h2{color:var(--cream);}
+  .features .section-head p{color:#C9C0B4;}
+  .feature-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:1px;
+    background:rgba(251,246,234,.14);
+    border:1px solid rgba(251,246,234,.14);
+  }
+  .feature-card{
+    background:var(--ink);
+    padding:36px 28px;
+  }
+  .feature-icon{
+    width:38px;height:38px;margin-bottom:1.4em;color:var(--turmeric);
+  }
+  .feature-card h3{color:var(--cream);font-size:1.05rem;margin-bottom:.4em;}
+  .feature-card p{color:#B9AFA2;font-size:.92rem;margin:0;}
+
+
+  /* ---------- REVIEWS ---------- */
+  .reviews{background:var(--cream-deep);}
+  .review-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+  }
+  .review-card{
+    background:var(--card);
+    border-radius:6px;
+    padding:30px;
+    border:1px solid var(--line);
+  }
+  .stars{color:var(--turmeric);letter-spacing:.15em;margin-bottom:.8em;font-size:.95rem;}
+  .review-card p{color:var(--ink);font-family:'Fraunces',serif;font-style:italic;font-size:1.05rem;margin-bottom:1em;}
+  .review-name{font-size:.85rem;color:var(--ink-soft);font-weight:600;}
+
+  /* ---------- CTA BANNER ---------- */
+  .cta-band{
+    background:var(--chili);
+    color:var(--cream);
+    text-align:center;
+    padding:80px 0;
+  }
+  .cta-band h2{color:var(--cream);}
+  .cta-band p{color:rgba(251,246,234,.85);max-width:52ch;margin-inline:auto;}
+  .cta-band .btn-primary{
+    background:var(--cream);
+    color:var(--chili-deep);
+    box-shadow:0 2px 0 rgba(0,0,0,.2);
+  }
+
+  /* ---------- HOURS / CONTACT ---------- */
+  .info-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .info-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:36px;
+  }
+  .info-card h3{font-size:1.15rem;margin-bottom:.8em;}
+  .info-row{display:flex;justify-content:space-between;padding:.5em 0;border-bottom:1px solid var(--line);font-size:.95rem;}
+  .info-row:last-child{border-bottom:none;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    background:var(--ink);
+    color:#B9AFA2;
+    padding:48px 0 32px;
+    font-size:.85rem;
+  }
+  .footer-inner{
+    display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;
+  }
+  footer .logo{color:var(--cream);}
+  footer .logo span{color:var(--turmeric);}
+
+  /* ---------- WHATSAPP FLOAT ---------- */
+  .wa-float{
+    position:fixed;
+    right:22px;bottom:22px;
+    z-index:60;
+    background:var(--leaf);
+    color:#fff;
+    width:58px;height:58px;
+    border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    box-shadow:0 8px 20px rgba(36,28,23,.3);
+    text-decoration:none;
+  }
+  .wa-float:hover{transform:scale(1.06);}
+  .wa-float svg{width:28px;height:28px;}
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width:860px){
+    nav.links{display:none;}
+    .hero-grid{grid-template-columns:1fr;}
+    .stamp{position:static;transform:rotate(-6deg);margin-bottom:24px;}
+    .about-grid{grid-template-columns:1fr;}
+    .about-grid .thali{order:-1;}
+    .feature-grid{grid-template-columns:repeat(2,1fr);}
+    .review-grid{grid-template-columns:1fr;}
+    .info-grid{grid-template-columns:1fr;}
+    section{padding:64px 0;}
+  }
+  @media (max-width:480px){
+    .feature-grid{grid-template-columns:1fr;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;scroll-behavior:auto !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav">
+  <div class="nav-inner">
+    <div class="logo">Tandoor <span>&amp;</span> Co.</div>
+    <nav class="links">
+      <a href="#about">About</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://wa.me/910000000000?text=I%20want%20to%20order" target="_blank" rel="noopener">Order on WhatsApp</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">Fast service, slow-cooked flavor</p>
+      <h1>Real Indian food, <em>made to order.</em></h1>
+      <p class="lead">Freshly prepared dishes, authentic recipes and quality ingredients — a comfortable dining experience for families, friends and food lovers.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://wa.me/910000000000?text=I%20want%20to%20order" target="_blank" rel="noopener">🎉 Get 10% Off — Order Now</a>
+        <a class="btn btn-ghost" href="#reviews">See Reviews</a>
+      </div>
+    </div>
+    <div style="position:relative;">
+      <div class="stamp">
+        <div class="stamp-inner">
+          <span class="big">10%</span>
+          <span class="small">Off on WhatsApp</span>
+        </div>
+      </div>
+      <div class="thali"></div>
+      <div class="thali-label">Since<br>2016</div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div>
+      <div class="thali" style="max-width:320px;"></div>
+    </div>
+    <div class="about-copy">
+      <p class="eyebrow">Our story</p>
+      <h2>Dedicated to authentic taste, one plate at a time.</h2>
+      <div class="accent-line"></div>
+      <p>Tandoor &amp; Co. is dedicated to serving freshly prepared dishes with authentic taste and quality ingredients. Our goal is to create a memorable dining experience where you can enjoy delicious food, warm hospitality and a comfortable atmosphere.</p>
+      <p>From traditional favorites to modern flavors, every dish is prepared with care by our experienced kitchen team — no shortcuts, no compromise.</p>
+    </div>
+  </div>
+</section>
+
+<section class="features">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow" style="justify-content:center;">Why choose us</p>
+      <h2>What makes every visit worth it</h2>
+    </div>
+  </div>
+  <div class="wrap">
+    <div class="feature-grid">
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3c-4 4-6 8-6 11a6 6 0 0 0 12 0c0-3-2-7-6-11z"/></svg>
+        <h3>Fresh Ingredients</h3>
+        <p>High quality ingredients, sourced and prepared fresh for every dish we serve.</p>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 10h16M4 10a8 8 0 0 0 16 0M4 10l1-6h14l1 6"/></svg>
+        <h3>Authentic Taste</h3>
+        <p>Recipes carefully crafted over years to deliver traditional, unmistakable flavor.</p>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 21V11l9-7 9 7v10M9 21v-6h6v6"/></svg>
+        <h3>Comfortable Dining</h3>
+        <p>A welcoming space perfect for families, friends and gatherings of any size.</p>
+      </div>
+      <div class="feature-card">
+        <svg class="feature-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+        <h3>Fast Service</h3>
+        <p>Quick, attentive service so you can enjoy your favorite meals without the wait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="reviews" class="reviews">
+  <div class="wrap">
+    <div class="section-head center">
+      <p class="eyebrow" style="justify-content:center;">Customer reviews</p>
+      <h2>What people say after they visit</h2>
+    </div>
+    <div class="review-grid">
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>“Amazing food and great service. Everything felt fresh and full of flavor.”</p>
+        <div class="review-name">— Priya S.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>“One of the best places for family dining. Comfortable and welcoming.”</p>
+        <div class="review-name">— Ramesh K.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>“Delicious food with authentic taste — you can tell the recipes are real.”</p>
+        <div class="review-name">— Ayesha M.</div>
+      </div>
+      <div class="review-card">
+        <div class="stars">★★★★★</div>
+        <p>“Highly recommended for anyone who loves great food and fast service.”</p>
+        <div class="review-name">— Vikram T.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap">
+    <h2>Order now &amp; get 10% off</h2>
+    <p>Order your favorite dishes directly through WhatsApp and enjoy a special discount on your first order.</p>
+    <div style="margin-top:2em;">
+      <a class="btn btn-primary" href="https://wa.me/910000000000?text=I%20want%20to%20order" target="_blank" rel="noopener">💬 Order Now on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap info-grid">
+    <div class="info-card">
+      <h3>Opening Hours</h3>
+      <div class="info-row"><span>Monday – Sunday</span><span>10:00 AM – 11:00 PM</span></div>
+    </div>
+    <div class="info-card" id="contact">
+      <h3>Contact Us</h3>
+      <div class="info-row"><span>Email</span><span>hello@tandoorandco.com</span></div>
+      <div class="info-row"><span>WhatsApp</span><span>+91 00000 00000</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <div class="logo">Tandoor <span>&amp;</span> Co.</div>
+    <div>© 2026 Tandoor &amp; Co. All rights reserved.</div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/910000000000?text=I%20want%20to%20order" target="_blank" rel="noopener" aria-label="Order on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="currentColor"><path d="M16 2C8.3 2 2 8.3 2 16c0 2.5.7 4.9 1.9 7L2 30l7.2-1.9c2 1.1 4.3 1.7 6.8 1.7 7.7 0 14-6.3 14-14S23.7 2 16 2zm0 25.5c-2.2 0-4.4-.6-6.2-1.7l-.4-.3-4.3 1.1 1.1-4.2-.3-.4C4.6 20.2 4 18.1 4 16 4 9.4 9.4 4 16 4s12 5.4 12 12-5.4 11.5-12 11.5zm6.5-8.6c-.4-.2-2.1-1-2.4-1.2-.3-.1-.6-.2-.8.2-.2.4-.9 1.2-1.1 1.4-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8.2-.2.4-.4.6-.6.2-.2.3-.4.4-.6.1-.2.1-.5 0-.7-.1-.2-.8-2-1.1-2.7-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.8 0 1.6 1.2 3.2 1.4 3.4.2.2 2.4 3.7 5.8 5.1.8.3 1.5.5 2 .7.8.3 1.6.2 2.2.1.7-.1 2.1-.9 2.4-1.7.3-.8.3-1.5.2-1.7-.1-.1-.3-.2-.7-.4z"/></svg>
+</a>
+
+</body>
+</html>
